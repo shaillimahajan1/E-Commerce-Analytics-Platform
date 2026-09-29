@@ -298,13 +298,13 @@ python -m http.server 8080 --directory dashboard
 The repository includes an automated GitHub Actions deployment workflow (`.github/workflows/deploy-pages.yml`). To deploy live:
 ```bash
 # 1. Add your GitHub remote repository
-git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
+git remote add origin https://github.com/shaillimahajan1/E-Commerce-Analytics-Platform.git
 
 # 2. Push to main
 git branch -M main
 git push -u origin main
 ```
-The automated workflow will run and deploy the dashboard to `https://<YOUR_USERNAME>.github.io/<YOUR_REPOSITORY>/`!
+The automated workflow will run and deploy the dashboard to `https://shaillimahajan1.github.io/E-Commerce-Analytics-Platform/`!
 *(In your repository on GitHub, ensure **Settings → Pages → Source** is set to **GitHub Actions** or **Deploy from a branch (`gh-pages`)**).*
 
 ---
