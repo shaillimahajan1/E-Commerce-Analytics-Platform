@@ -91,6 +91,52 @@
     </button>
   </nav>
 
+  <!-- Interactive Cross-Filter Toolbar -->
+  <section class="filter-toolbar" id="filterToolbar">
+    <div class="filter-toolbar-inner">
+      <div class="filter-controls">
+        <div class="filter-group">
+          <label for="filterCategory">Category:</label>
+          <select id="filterCategory" class="filter-select">
+            <option value="ALL">All Product Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterRegion">Macro-Region:</label>
+          <select id="filterRegion" class="filter-select">
+            <option value="ALL">All Regions (Brazil)</option>
+            <option value="Southeast">Southeast</option>
+            <option value="South">South</option>
+            <option value="Northeast">Northeast</option>
+            <option value="Central-West">Central-West</option>
+            <option value="North">North</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterPeriod">Month / Period:</label>
+          <select id="filterPeriod" class="filter-select">
+            <option value="ALL">All Months (2017 - 2018)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="active-filters-row" id="activeFiltersRow">
+        <div class="filter-status-info">
+          <span class="interactive-hint">💡 <em>Interactive Cross-Filtering: Click any chart bar / slice to drill down</em></span>
+          <div id="filterPillsContainer" class="filter-pills-container"></div>
+        </div>
+        <button id="resetFiltersBtn" class="reset-filter-btn" style="display: none;" title="Reset all active cross-filters">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 6L6 18M6 6l12 12"></path>
+          </svg>
+          Reset Filters
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- Main Content Canvas -->
   <main class="dashboard-canvas">
 
@@ -100,27 +146,27 @@
         <div class="kpi-card" id="kpi-gmv">
           <div class="kpi-label">Gross Merchandise Value</div>
           <div class="kpi-value" id="kpi-val-gmv">R$ 13.59M</div>
-          <div class="kpi-sub positive">&uarr; +4.2% MoM (Prior month R$ 985K)</div>
+          <div class="kpi-sub positive" id="kpi-sub-gmv">&uarr; +4.2% MoM (Prior month R$ 985K)</div>
         </div>
         <div class="kpi-card" id="kpi-orders">
           <div class="kpi-label">Total Completed Orders</div>
           <div class="kpi-value" id="kpi-val-orders">99,441</div>
-          <div class="kpi-sub">Across 27 Brazilian States</div>
+          <div class="kpi-sub" id="kpi-sub-orders">Across 27 Brazilian States</div>
         </div>
         <div class="kpi-card" id="kpi-aov">
           <div class="kpi-label">Average Order Value (AOV)</div>
           <div class="kpi-value" id="kpi-val-aov">R$ 136.68</div>
-          <div class="kpi-sub">Merchandise GMV per order</div>
+          <div class="kpi-sub" id="kpi-sub-aov">Merchandise GMV per order</div>
         </div>
         <div class="kpi-card" id="kpi-ontime">
           <div class="kpi-label">On-Time Delivery Rate</div>
           <div class="kpi-value success" id="kpi-val-ontime">92.1%</div>
-          <div class="kpi-sub">Promised SLA: 24.5d | Actual: 12.5d</div>
+          <div class="kpi-sub" id="kpi-sub-ontime">Promised SLA: 24.5d | Actual: 12.5d</div>
         </div>
         <div class="kpi-card" id="kpi-csat">
           <div class="kpi-label">Average CSAT Rating</div>
           <div class="kpi-value warning" id="kpi-val-csat">4.09 ★</div>
-          <div class="kpi-sub">99,224 Verified Customer Reviews</div>
+          <div class="kpi-sub" id="kpi-sub-csat">99,224 Verified Customer Reviews</div>
         </div>
       </div>
 
@@ -128,7 +174,7 @@
         <div class="chart-card">
           <div class="chart-header">
             <div>
-              <h3 class="chart-title">Monthly GMV &amp; Order Volume Trajectory</h3>
+              <h3 class="chart-title">Monthly GMV &amp; Order Volume Trajectory <span class="chart-interactive-tag">Click bar to filter</span></h3>
               <p class="chart-desc">Tracks marketplace revenue velocity and order volume from 2017 to 2018</p>
             </div>
           </div>
@@ -140,8 +186,8 @@
         <div class="chart-card">
           <div class="chart-header">
             <div>
-              <h3 class="chart-title">Top 10 Product Categories by GMV</h3>
-              <p class="chart-desc">Top 5 categories generate over 40% of marketplace merchandise volume</p>
+              <h3 class="chart-title">Top 10 Product Categories by GMV <span class="chart-interactive-tag">Click bar to filter</span></h3>
+              <p class="chart-desc">Top categories generate over 40% of marketplace merchandise volume</p>
             </div>
           </div>
           <div class="chart-wrapper">
@@ -154,7 +200,7 @@
         <div class="chart-card">
           <div class="chart-header">
             <div>
-              <h3 class="chart-title">Orders by Brazilian Macro-Region</h3>
+              <h3 class="chart-title">Orders by Brazilian Macro-Region <span class="chart-interactive-tag">Click slice to filter</span></h3>
               <p class="chart-desc">Southeast states (SP, RJ, MG) dominate over 68% of national orders</p>
             </div>
           </div>
@@ -167,10 +213,10 @@
           <div class="chart-header">
             <div>
               <h3 class="chart-title">Executive Key Takeaways</h3>
-              <p class="chart-desc">Empirical findings derived from 100k verified transactions</p>
+              <p class="chart-desc">Empirical findings derived from verified transactions</p>
             </div>
           </div>
-          <div class="takeaways-list">
+          <div class="takeaways-list" id="executiveTakeawaysList">
             <div class="takeaway-item">
               <span class="badge blue">Growth</span>
               <p>Marketplace scaled from R$ 120k/mo in Jan 2017 to over R$ 1.0M/mo by mid-2018, stabilizing at ~6,500 monthly orders.</p>
