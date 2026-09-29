@@ -1,0 +1,41 @@
+ecommerce_analytics:
+  target: dev
+  outputs:
+    # --------------------------------------------------------------------------
+    # Local Development & Continuous Integration Target (DuckDB)
+    # Allows 100% full reproduction, testing, and transformation without cloud cost
+    # --------------------------------------------------------------------------
+    dev:
+      type: duckdb
+      path: "../data/processed/ecommerce_warehouse.duckdb"
+      threads: 4
+      schema: ecommerce_analytics
+
+    # --------------------------------------------------------------------------
+    # Google BigQuery Production Target (Service Account Authentication)
+    # Set GCP_PROJECT_ID and GOOGLE_APPLICATION_CREDENTIALS in your .env
+    # --------------------------------------------------------------------------
+    prod_bigquery:
+      type: bigquery
+      method: service-account
+      project: "{{ env_var('GCP_PROJECT_ID', 'your-gcp-project-id') }}"
+      dataset: "{{ env_var('BIGQUERY_DATASET_ANALYTICS', 'ecommerce_analytics') }}"
+      keyfile: "{{ env_var('GOOGLE_APPLICATION_CREDENTIALS', 'credentials/gcp_service_account.json') }}"
+      location: "{{ env_var('GCP_LOCATION', 'US') }}"
+      threads: 8
+      timeout_seconds: 300
+      priority: interactive
+      retries: 2
+
+    # --------------------------------------------------------------------------
+    # Google BigQuery OAuth Target (User CLI Authentication via 'gcloud auth')
+    # --------------------------------------------------------------------------
+    oauth_bigquery:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT_ID', 'your-gcp-project-id') }}"
+      dataset: "{{ env_var('BIGQUERY_DATASET_ANALYTICS', 'ecommerce_analytics') }}"
+      location: "{{ env_var('GCP_LOCATION', 'US') }}"
+      threads: 4
+      timeout_seconds: 300
+      priority: interactive
