@@ -1,0 +1,210 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: "Calendar date dimension table spanning 2016 through 2019. Grain: one row per calendar day."
+    columns:
+      - name: date_day
+        description: "Primary key date."
+        tests:
+          - unique
+          - not_null
+      - name: date_key
+        description: "Surrogate integer key formatted as YYYYMMDD."
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_customer
+    description: "Persistent customer dimension table with RFM scores and lifetime value. Grain: one row per unique real-world customer (customer_unique_id)."
+    columns:
+      - name: customer_unique_id
+        description: "Primary key for persistent customer."
+        tests:
+          - unique
+          - not_null
+      - name: rfm_segment
+        description: "Customer behavioral segment (Champions, Loyal, Recent, At Risk, Hibernating)."
+        tests:
+          - not_null
+
+  - name: dim_product
+    description: "Product catalog dimension with English categories and freight sizing tiers. Grain: one row per product_id."
+    columns:
+      - name: product_id
+        description: "Primary key for product."
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name_english
+        description: "Translated English category name."
+        tests:
+          - not_null
+
+  - name: dim_seller
+    description: "Seller directory dimension with lifetime scorecard and revenue tier. Grain: one row per seller_id."
+    columns:
+      - name: seller_id
+        description: "Primary key for seller."
+        tests:
+          - unique
+          - not_null
+      - name: seller_revenue_tier
+        description: "Revenue tier classification (Enterprise, Growth, Established, Long Tail)."
+        tests:
+          - not_null
+
+  - name: dim_location
+    description: "Geographic dimension aggregating Brazilian zip code prefixes to macro-regions. Grain: one row per zip_code_prefix."
+    columns:
+      - name: zip_code_prefix
+        description: "Primary key zip code prefix."
+        tests:
+          - unique
+          - not_null
+      - name: macro_region
+        description: "Official Brazilian IBGE macro-region (Southeast, South, Northeast, Central-West, North)."
+        tests:
+          - not_null
+
+  - name: fct_orders
+    description: "Central sales fact table at order transaction grain. Grain: one row per order_id."
+    columns:
+      - name: order_id
+        description: "Primary key for order."
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        description: "Foreign key referencing dim_customer."
+        tests:
+          - not_null
+      - name: order_purchase_timestamp
+        description: "Purchase order timestamp."
+        tests:
+          - not_null
+      - name: gross_merchandise_value
+        description: "Total merchandise revenue excluding freight in BRL."
+        tests:
+          - not_null
+
+  - name: fct_order_items
+    description: "Granular order line item fact table. Grain: one row per order line item (order_item_key)."
+    columns:
+      - name: order_item_key
+        description: "Primary key surrogate hash."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key referencing fct_orders."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_orders')
+              field: order_id
+      - name: product_id
+        description: "Foreign key referencing dim_product."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_id
+      - name: seller_id
+        description: "Foreign key referencing dim_seller."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_seller')
+              field: seller_id
+      - name: item_price
+        description: "Item unit price in BRL."
+        tests:
+          - not_null
+
+  - name: fct_payments
+    description: "Payment transaction fact table. Grain: one row per payment transaction attempt (payment_key)."
+    columns:
+      - name: payment_key
+        description: "Primary key surrogate hash."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key referencing fct_orders."
+        tests:
+          - not_null
+      - name: payment_value
+        description: "Monetary amount paid in BRL."
+        tests:
+          - not_null
+
+  - name: fct_reviews
+    description: "Customer feedback and review scores fact table. Grain: one row per review submission (review_key)."
+    columns:
+      - name: review_key
+        description: "Primary key surrogate hash."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Foreign key referencing fct_orders."
+        tests:
+          - not_null
+      - name: review_score
+        description: "Customer satisfaction rating (1 to 5)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+
+  - name: fct_delivery
+    description: "Operational delivery and carrier SLA fact table. Grain: one row per delivered order (order_id)."
+    columns:
+      - name: order_id
+        description: "Primary key for delivered order."
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_sales_monthly
+    description: "Monthly business mart aggregated by category and month. Grain: one row per sales_month + product_category_name_english."
+    columns:
+      - name: sales_month
+        description: "First day of the sales month."
+        tests:
+          - not_null
+      - name: product_category_name_english
+        description: "English category name."
+        tests:
+          - not_null
+
+  - name: mart_customer_retention
+    description: "Customer cohort retention mart tracking repeat purchase activity across months. Grain: one row per cohort_month + order_month."
+    columns:
+      - name: cohort_month
+        description: "Acquisition month of the customer cohort."
+        tests:
+          - not_null
+      - name: month_number
+        description: "Relative month index (0 = acquisition month, 1 = first month after, etc.)."
+        tests:
+          - not_null
+
+  - name: mart_seller_performance
+    description: "Seller scorecard and revenue rank mart. Grain: one row per seller_id."
+    columns:
+      - name: seller_id
+        description: "Primary key for seller."
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_product_performance
+    description: "Product scorecard with Pareto 80/20 cumulative revenue analysis. Grain: one row per product_id."
+    columns:
+      - name: product_id
+        description: "Primary key for product."
+        tests:
+          - unique
+          - not_null

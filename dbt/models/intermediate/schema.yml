@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: "Enriched order-level view combining items, payments, reviews, and customer identifiers."
+    columns:
+      - name: order_id
+        description: "Primary key for orders."
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        description: "Persistent customer identifier."
+        tests:
+          - not_null
+
+  - name: int_order_items_enriched
+    description: "Enriched line-item view linking products, categories, sellers, and customer geographic origins."
+    columns:
+      - name: order_item_key
+        description: "Surrogate primary key for order item."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Order foreign key."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Product foreign key."
+        tests:
+          - not_null
+      - name: seller_id
+        description: "Seller foreign key."
+        tests:
+          - not_null
+
+  - name: int_customer_orders
+    description: "Aggregated customer metrics, purchase history, and RFM calculation inputs."
+    columns:
+      - name: customer_unique_id
+        description: "Primary key for persistent customers."
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_order_count
+        description: "Total number of orders placed by customer."
+        tests:
+          - not_null
+
+  - name: int_delivery_metrics
+    description: "Delivery SLA and transit performance metrics for delivered orders."
+    columns:
+      - name: order_id
+        description: "Primary key for delivered orders."
+        tests:
+          - unique
+          - not_null
+
+  - name: int_product_metrics
+    description: "Aggregated product sales, units sold, revenue, and satisfaction ratings."
+    columns:
+      - name: product_id
+        description: "Primary key for products."
+        tests:
+          - unique
+          - not_null
+
+  - name: int_seller_metrics
+    description: "Aggregated seller sales volume, revenue, on-time SLA fulfillment, and customer reviews."
+    columns:
+      - name: seller_id
+        description: "Primary key for sellers."
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,147 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Cleaned customer staging view."
+    columns:
+      - name: customer_id
+        description: "Primary key for customer order token."
+        tests:
+          - unique
+          - not_null
+      - name: customer_unique_id
+        description: "Persistent identifier of the customer across orders."
+        tests:
+          - not_null
+      - name: customer_state
+        description: "Customer state abbreviation."
+        tests:
+          - not_null
+
+  - name: stg_orders
+    description: "Cleaned orders staging view."
+    columns:
+      - name: order_id
+        description: "Primary key for orders."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key referencing stg_customers."
+        tests:
+          - not_null
+      - name: order_status
+        description: "Order status code."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'unavailable', 'invoiced', 'processing', 'created', 'approved']
+      - name: order_purchase_timestamp
+        description: "Purchase order timestamp."
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: "Cleaned order line items view."
+    columns:
+      - name: order_item_key
+        description: "Surrogate primary key for order item."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Order foreign key."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Product foreign key."
+        tests:
+          - not_null
+      - name: seller_id
+        description: "Seller foreign key."
+        tests:
+          - not_null
+      - name: price
+        description: "Item unit price."
+        tests:
+          - not_null
+
+  - name: stg_payments
+    description: "Cleaned payments staging view."
+    columns:
+      - name: payment_key
+        description: "Surrogate primary key for payment transaction."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Order foreign key."
+        tests:
+          - not_null
+      - name: payment_type
+        description: "Payment method."
+        tests:
+          - not_null
+      - name: payment_value
+        description: "Payment monetary value."
+        tests:
+          - not_null
+
+  - name: stg_reviews
+    description: "Cleaned customer reviews staging view."
+    columns:
+      - name: review_key
+        description: "Surrogate primary key for review submission."
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Order foreign key."
+        tests:
+          - not_null
+      - name: review_score
+        description: "Satisfaction rating (1 to 5)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+
+  - name: stg_products
+    description: "Cleaned product catalog view."
+    columns:
+      - name: product_id
+        description: "Primary key for products."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sellers
+    description: "Cleaned seller directory view."
+    columns:
+      - name: seller_id
+        description: "Primary key for sellers."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_geolocation
+    description: "Deduplicated geographic coordinates aggregated by zip prefix."
+    columns:
+      - name: zip_code_prefix
+        description: "Primary key for location prefix."
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_category_translation
+    description: "Product category name translation lookup."
+    columns:
+      - name: product_category_name
+        description: "Primary key category name in Portuguese."
+        tests:
+          - unique
+          - not_null
+      - name: product_category_name_english
+        description: "Category name in English."
+        tests:
+          - not_null

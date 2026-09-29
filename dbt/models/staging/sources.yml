@@ -1,0 +1,164 @@
+version: 2
+
+sources:
+  - name: ecommerce_raw
+    schema: ecommerce_raw
+    description: "Raw landed tables ingested directly from the Olist Brazilian E-Commerce dataset by the Python ingestion pipeline."
+    tables:
+      - name: raw_customers
+        description: "Raw customer records containing order-level customer_id and persistent customer_unique_id."
+        columns:
+          - name: customer_id
+            description: "Unique token assigned per order transaction."
+          - name: customer_unique_id
+            description: "Persistent unique identifier of the real-world customer."
+          - name: customer_zip_code_prefix
+            description: "First 5 digits of customer zip code."
+          - name: customer_city
+            description: "Customer city name."
+          - name: customer_state
+            description: "Customer two-letter state abbreviation."
+
+      - name: raw_geolocation
+        description: "Raw Brazilian zip code prefix coordinates."
+        columns:
+          - name: geolocation_zip_code_prefix
+            description: "Zip code prefix."
+          - name: geolocation_lat
+            description: "Latitude coordinate."
+          - name: geolocation_lng
+            description: "Longitude coordinate."
+          - name: geolocation_city
+            description: "City name."
+          - name: geolocation_state
+            description: "State abbreviation."
+
+      - name: raw_order_items
+        description: "Line-item records for each item in an order."
+        columns:
+          - name: order_id
+            description: "Order identifier."
+          - name: order_item_id
+            description: "Sequential number identifying item within an order."
+          - name: product_id
+            description: "Product identifier."
+          - name: seller_id
+            description: "Seller identifier."
+          - name: shipping_limit_date
+            description: "Seller shipping limit date."
+          - name: price
+            description: "Item price in Brazilian Real (BRL)."
+          - name: freight_value
+            description: "Freight cost in BRL."
+
+      - name: raw_payments
+        description: "Payment transactions per order, including installments and payment method."
+        columns:
+          - name: order_id
+            description: "Order identifier."
+          - name: payment_sequential
+            description: "Sequential payment attempt number."
+          - name: payment_type
+            description: "Method of payment (credit_card, boleto, voucher, debit_card)."
+          - name: payment_installments
+            description: "Number of installments chosen."
+          - name: payment_value
+            description: "Amount paid in BRL."
+
+      - name: raw_reviews
+        description: "Customer satisfaction review records."
+        columns:
+          - name: review_id
+            description: "Review identifier."
+          - name: order_id
+            description: "Order identifier."
+          - name: review_score
+            description: "Satisfaction rating from 1 to 5."
+          - name: review_comment_title
+            description: "Review title text."
+          - name: review_comment_message
+            description: "Review feedback body text."
+          - name: review_creation_date
+            description: "Date survey was sent to customer."
+          - name: review_answer_timestamp
+            description: "Timestamp when review was submitted."
+
+      - name: raw_orders
+        description: "Order headers tracking core milestones and order status."
+        columns:
+          - name: order_id
+            description: "Unique order identifier."
+          - name: customer_id
+            description: "Customer transaction token."
+          - name: order_status
+            description: "Status (delivered, shipped, canceled, etc.)."
+          - name: order_purchase_timestamp
+            description: "Purchase order timestamp."
+          - name: order_approved_at
+            description: "Payment approval timestamp."
+          - name: order_delivered_carrier_date
+            description: "Dispatch to carrier timestamp."
+          - name: order_delivered_customer_date
+            description: "Final delivery to customer timestamp."
+          - name: order_estimated_delivery_date
+            description: "Estimated delivery date committed to customer."
+
+      - name: raw_products
+        description: "Product catalog metadata and physical dimensions."
+        columns:
+          - name: product_id
+            description: "Unique product identifier."
+          - name: product_category_name
+            description: "Product category in Portuguese."
+          - name: product_name_lenght
+            description: "Product name character length."
+          - name: product_description_lenght
+            description: "Product description character length."
+          - name: product_photos_qty
+            description: "Number of published product photos."
+          - name: product_weight_g
+            description: "Product weight in grams."
+          - name: product_length_cm
+            description: "Product length in centimeters."
+          - name: product_height_cm
+            description: "Product height in centimeters."
+          - name: product_width_cm
+            description: "Product width in centimeters."
+
+      - name: raw_sellers
+        description: "Seller registry and geographic location."
+        columns:
+          - name: seller_id
+            description: "Unique seller identifier."
+          - name: seller_zip_code_prefix
+            description: "Seller zip code prefix."
+          - name: seller_city
+            description: "Seller city name."
+          - name: seller_state
+            description: "Seller state code."
+
+      - name: raw_category_translation
+        description: "Mapping of Portuguese category names to English."
+        columns:
+          - name: product_category_name
+            description: "Category name in Portuguese."
+          - name: product_category_name_english
+            description: "Category name translated to English."
+
+      - name: raw_ingestion_audit
+        description: "Audit trail populated by python ingestion pipeline."
+        columns:
+          - name: audit_id
+            description: "Primary key for audit record."
+          - name: dataset_name
+            description: "Name of dataset."
+          - name: source_file
+            description: "Source CSV filename."
+          - name: load_timestamp
+            description: "UTC timestamp when load completed."
+          - name: row_count
+            description: "Number of rows loaded."
+          - name: status
+            description: "Ingestion status (SUCCESS / FAILED)."
+          - name: execution_time_seconds
+            description: "Elapsed duration in seconds."
