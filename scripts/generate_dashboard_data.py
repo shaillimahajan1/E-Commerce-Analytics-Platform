@@ -167,6 +167,30 @@ def generate_dashboard_data():
             LIMIT 15;
         """).df().to_dict(orient="records")
 
+        # 10. Multi-Dimensional Interactive Cube (Year-Month x Category x Macro-Region)
+        dimensional_cube = conn.execute("""
+            WITH loc AS (
+                SELECT DISTINCT primary_state, macro_region FROM ecommerce_analytics_marts.dim_location
+            )
+            SELECT 
+                strftime(o.order_purchase_timestamp, '%Y-%m') AS ym,
+                coalesce(p.product_category_name_english, 'Other') AS cat,
+                coalesce(loc.macro_region, 'Southeast') AS reg,
+                count(distinct o.order_id) AS ord,
+                round(sum(i.item_price), 2) AS gmv,
+                round(sum(i.item_freight_value), 2) AS frt,
+                round(avg(o.is_on_time) * 100, 1) AS ont,
+                round(avg(o.avg_review_score), 2) AS csat
+            FROM ecommerce_analytics_marts.fct_orders o
+            JOIN ecommerce_analytics_marts.fct_order_items i ON o.order_id = i.order_id
+            LEFT JOIN ecommerce_analytics_marts.dim_product p ON i.product_id = p.product_id
+            LEFT JOIN loc ON o.customer_state = loc.primary_state
+            WHERE o.order_status NOT IN ('canceled', 'unavailable') 
+              AND strftime(o.order_purchase_timestamp, '%Y-%m') BETWEEN '2017-01' AND '2018-08'
+            GROUP BY 1, 2, 3
+            ORDER BY 1, 2, 3;
+        """).df().to_dict(orient="records")
+
         data_bundle = {
             "kpis": kpis,
             "monthly_trend": monthly_trend,
@@ -176,7 +200,8 @@ def generate_dashboard_data():
             "payment_splits": payment_splits,
             "regional_logistics": regional_logistics,
             "top_sellers": top_sellers,
-            "top_products": top_products
+            "top_products": top_products,
+            "cube": dimensional_cube
         }
 
         out_file = out_dir / "data.js"
