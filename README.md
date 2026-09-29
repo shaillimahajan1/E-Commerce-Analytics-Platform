@@ -6,6 +6,7 @@
 [![BigQuery Ready](https://img.shields.io/badge/Data%20Warehouse-Google%20BigQuery-4285F4.svg)](https://cloud.google.com/bigquery)
 [![Apache Airflow](https://img.shields.io/badge/Orchestration-Apache%20Airflow%202.8-017CEE.svg)](https://airflow.apache.org/)
 [![Power BI](https://img.shields.io/badge/BI-Power%20BI-F2C811.svg)](https://powerbi.microsoft.com/)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Dashboard-GitHub%20Pages-22c55e.svg)](https://pages.github.com/)
 [![Tests: 104 Passing](https://img.shields.io/badge/dbt%20Tests-104%20PASS-brightgreen.svg)]()
 [![Reconciliation: 100%](https://img.shields.io/badge/Financial%20Reconciliation-100%25%20Accurate-success.svg)]()
 
@@ -281,6 +282,30 @@ docker compose up -d
 # Access Airflow Webserver at http://localhost:8080 (airflow / airflow)
 # Enable and trigger DAG: ecommerce_analytics_pipeline
 ```
+
+### 6. Interactive Executive Web Dashboard & GitHub Pages Deployment
+
+The platform includes a zero-dependency, production-grade **Executive Web Dashboard** built with modern responsive design, Chart.js visualizations, dynamic customer cohort retention heatmaps, and theme toggling.
+
+#### Run Locally:
+```bash
+# Double-click dashboard/index.html in any browser, or run via Python HTTP server:
+python -m http.server 8080 --directory dashboard
+# Open http://localhost:8080 in your browser
+```
+
+#### Deploy Live Directly on GitHub Pages:
+The repository includes an automated GitHub Actions deployment workflow (`.github/workflows/deploy-pages.yml`). To deploy live:
+```bash
+# 1. Add your GitHub remote repository
+git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
+
+# 2. Push to main
+git branch -M main
+git push -u origin main
+```
+The automated workflow will run and deploy the dashboard to `https://<YOUR_USERNAME>.github.io/<YOUR_REPOSITORY>/`!
+*(In your repository on GitHub, ensure **Settings → Pages → Source** is set to **GitHub Actions** or **Deploy from a branch (`gh-pages`)**).*
 
 ---
 
