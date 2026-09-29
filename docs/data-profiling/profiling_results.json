@@ -1,0 +1,1019 @@
+{
+  "generated_at": "2026-09-29T08:02:52.538815",
+  "total_files": 9,
+  "tables": {
+    "olist_customers_dataset": {
+      "table_name": "olist_customers_dataset",
+      "file_name": "olist_customers_dataset.csv",
+      "file_size_mb": 8.62,
+      "row_count": 99441,
+      "column_count": 5,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [
+        "customer_id"
+      ],
+      "columns": {
+        "customer_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 99441,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "06b8999e2fba1a1fbc88172c00ba8bc7": 1,
+            "18955e83d337fd6b2def6b18a428ac77": 1,
+            "4e7b3e00288586ebd08712fdd0374a03": 1,
+            "b2b6027bc5c5109e529d4dc6358b12c3": 1,
+            "4f2d8ab171c80ec8364f7c12e35b23ad": 1
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "customer_unique_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 96096,
+          "unique_percentage": 96.64,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "8d50f5eadf50201ccdcedfb9e2ac8455": 17,
+            "3e43e6105506432c953e165fb2acf44c": 9,
+            "1b6c7548a2a1f9037c1fd3ddfed95f33": 7,
+            "6469f99c1f9dfae7733b25662e7f1782": 7,
+            "ca77025e7201e3b30c44b472ff346268": 7
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "customer_zip_code_prefix": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 14994,
+          "unique_percentage": 15.08,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1003.0,
+          "max": 99990.0,
+          "mean": 35137.4746,
+          "std": 29797.939,
+          "median": 24416.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "customer_city": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 4119,
+          "unique_percentage": 4.14,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "sao paulo": 15540,
+            "rio de janeiro": 6882,
+            "belo horizonte": 2773,
+            "brasilia": 2131,
+            "curitiba": 1521
+          },
+          "min_length": 3,
+          "max_length": 32
+        },
+        "customer_state": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 27,
+          "unique_percentage": 0.03,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "SP": 41746,
+            "RJ": 12852,
+            "MG": 11635,
+            "RS": 5466,
+            "PR": 5045
+          },
+          "min_length": 2,
+          "max_length": 2
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:53.282800"
+    },
+    "olist_geolocation_dataset": {
+      "table_name": "olist_geolocation_dataset",
+      "file_name": "olist_geolocation_dataset.csv",
+      "file_size_mb": 58.44,
+      "row_count": 1000163,
+      "column_count": 5,
+      "duplicate_rows": 261831,
+      "candidate_primary_keys": [],
+      "columns": {
+        "geolocation_zip_code_prefix": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 19015,
+          "unique_percentage": 1.9,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1001.0,
+          "max": 99990.0,
+          "mean": 36574.1665,
+          "std": 30549.3357,
+          "median": 26530.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "geolocation_lat": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 717360,
+          "unique_percentage": 71.72,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": -36.6053744107061,
+          "max": 45.06593318269697,
+          "mean": -21.1762,
+          "std": 5.7159,
+          "median": -22.91937749486411,
+          "negative_count": 998827,
+          "zero_count": 0
+        },
+        "geolocation_lng": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 717613,
+          "unique_percentage": 71.75,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": -101.46676644931476,
+          "max": 121.10539381057764,
+          "mean": -46.3905,
+          "std": 4.2697,
+          "median": -46.63787866960149,
+          "negative_count": 1000160,
+          "zero_count": 0
+        },
+        "geolocation_city": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 8011,
+          "unique_percentage": 0.8,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "sao paulo": 135800,
+            "rio de janeiro": 62151,
+            "belo horizonte": 27805,
+            "s\u00e3o paulo": 24918,
+            "curitiba": 16593
+          },
+          "min_length": 2,
+          "max_length": 38
+        },
+        "geolocation_state": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 27,
+          "unique_percentage": 0.0,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "SP": 404268,
+            "MG": 126336,
+            "RJ": 121169,
+            "RS": 61851,
+            "PR": 57859
+          },
+          "min_length": 2,
+          "max_length": 2
+        }
+      },
+      "anomalies": [
+        {
+          "type": "DUPLICATE_ROWS",
+          "severity": "HIGH",
+          "count": 261831,
+          "percentage": 26.18,
+          "description": "Found 261831 exact duplicate rows across all columns."
+        },
+        {
+          "type": "MULTIPLE_COORDINATES_PER_ZIP",
+          "severity": "INFO",
+          "count": 17972,
+          "description": "17972 zip code prefixes have multiple coordinates, requiring deduplication/averaging in staging."
+        }
+      ],
+      "profile_timestamp": "2026-09-29T08:02:54.837264"
+    },
+    "olist_order_items_dataset": {
+      "table_name": "olist_order_items_dataset",
+      "file_name": "olist_order_items_dataset.csv",
+      "file_size_mb": 14.72,
+      "row_count": 112650,
+      "column_count": 7,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [],
+      "columns": {
+        "order_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 98666,
+          "unique_percentage": 87.59,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "8272b63d03f5f79c56e9e4120aec44ef": 21,
+            "1b15974a0141d54e36626dca3fdc731a": 20,
+            "ab14fdcfbe524636d65ee38360e22ce8": 20,
+            "428a2f660dc84138d969ccd69a0ab6d5": 15,
+            "9ef13efd6949e4573a18964dd1bbe7f5": 15
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "order_item_id": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 21,
+          "unique_percentage": 0.02,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1.0,
+          "max": 21.0,
+          "mean": 1.1978,
+          "std": 0.7051,
+          "median": 1.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 32951,
+          "unique_percentage": 29.25,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "aca2eb7d00ea1a7b8ebd4e68314663af": 527,
+            "99a4788cb24856965c36a24e339b6058": 488,
+            "422879e10f46682990de24d770e7f83d": 484,
+            "389d119b48cf3043d311335e499d9c6b": 392,
+            "368c6c730842d78016ad823897a372db": 388
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "seller_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 3095,
+          "unique_percentage": 2.75,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "6560211a19b47992c3666cc44a7e94c0": 2033,
+            "4a3ca9315b744ce9f8e9374361493884": 1987,
+            "1f50f920176fa81dab994f9023523100": 1931,
+            "cc419e0650a3c5ba77189a1882b7556a": 1775,
+            "da8622b14eb17ae2831f4ac5b9dab84a": 1551
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "shipping_limit_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 93318,
+          "unique_percentage": 82.84,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-09-19 00:15:34",
+          "max_date": "2020-04-09 22:35:08",
+          "invalid_date_count": 0
+        },
+        "price": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 5968,
+          "unique_percentage": 5.3,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 0.85,
+          "max": 6735.0,
+          "mean": 120.6537,
+          "std": 183.6339,
+          "median": 74.99,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "freight_value": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 6999,
+          "unique_percentage": 6.21,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 0.0,
+          "max": 409.68,
+          "mean": 19.9903,
+          "std": 15.8064,
+          "median": 16.26,
+          "negative_count": 0,
+          "zero_count": 383
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:55.323499"
+    },
+    "olist_order_payments_dataset": {
+      "table_name": "olist_order_payments_dataset",
+      "file_name": "olist_order_payments_dataset.csv",
+      "file_size_mb": 5.51,
+      "row_count": 103886,
+      "column_count": 5,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [],
+      "columns": {
+        "order_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 99440,
+          "unique_percentage": 95.72,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "fa65dad1b0e818e3ccc5cb0e39231352": 29,
+            "ccf804e764ed5650cd8759557269dc13": 26,
+            "285c2e15bebd4ac83635ccc563dc71f4": 22,
+            "895ab968e7bb0d5659d16cd74cd1650c": 21,
+            "ee9ca989fc93ba09a6eddc250ce01742": 19
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "payment_sequential": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 29,
+          "unique_percentage": 0.03,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1.0,
+          "max": 29.0,
+          "mean": 1.0927,
+          "std": 0.7066,
+          "median": 1.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "payment_type": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 5,
+          "unique_percentage": 0.0,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "credit_card": 76795,
+            "boleto": 19784,
+            "voucher": 5775,
+            "debit_card": 1529,
+            "not_defined": 3
+          },
+          "min_length": 6,
+          "max_length": 11
+        },
+        "payment_installments": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 24,
+          "unique_percentage": 0.02,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 0.0,
+          "max": 24.0,
+          "mean": 2.8533,
+          "std": 2.6871,
+          "median": 1.0,
+          "negative_count": 0,
+          "zero_count": 2
+        },
+        "payment_value": {
+          "dtype": "float64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 29077,
+          "unique_percentage": 27.99,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 0.0,
+          "max": 13664.08,
+          "mean": 154.1004,
+          "std": 217.4941,
+          "median": 100.0,
+          "negative_count": 0,
+          "zero_count": 9
+        }
+      },
+      "anomalies": [
+        {
+          "type": "NON_POSITIVE_PAYMENT",
+          "severity": "MEDIUM",
+          "count": 9,
+          "description": "9 payments have value <= 0.00."
+        }
+      ],
+      "profile_timestamp": "2026-09-29T08:02:55.502028"
+    },
+    "olist_order_reviews_dataset": {
+      "table_name": "olist_order_reviews_dataset",
+      "file_name": "olist_order_reviews_dataset.csv",
+      "file_size_mb": 13.78,
+      "row_count": 99224,
+      "column_count": 7,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [],
+      "columns": {
+        "review_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 98410,
+          "unique_percentage": 99.18,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "c444278834184f72b1484dfe47de7f97": 3,
+            "308316408775d1600dad81bd3184556d": 3,
+            "2d6ac45f859465b5c185274a1c929637": 3,
+            "3415c9f764e478409e8e0660ae816dd2": 3,
+            "4219a80ab469e3fc9901437b73da3f75": 3
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "order_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 98673,
+          "unique_percentage": 99.44,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "c88b1d1b157a9999ce368f218a407141": 3,
+            "df56136b8031ecd28e200bb18e6ddb2e": 3,
+            "03c939fd7fd3b38f8485a0f95798f1f6": 3,
+            "8e17072ec97ce29f0e1f111e598b0c85": 3,
+            "cf73e2cb1f4a9480ed70c154da3d954a": 2
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "review_score": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 5,
+          "unique_percentage": 0.01,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1.0,
+          "max": 5.0,
+          "mean": 4.0864,
+          "std": 1.3476,
+          "median": 5.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "review_comment_title": {
+          "dtype": "str",
+          "null_count": 87656,
+          "null_percentage": 88.34,
+          "unique_count": 4527,
+          "unique_percentage": 4.56,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "Recomendo": 423,
+            "recomendo": 345,
+            "Bom": 293,
+            "super recomendo": 270,
+            "Excelente": 248
+          },
+          "min_length": 1,
+          "max_length": 26
+        },
+        "review_comment_message": {
+          "dtype": "str",
+          "null_count": 58247,
+          "null_percentage": 58.7,
+          "unique_count": 36159,
+          "unique_percentage": 36.44,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "Muito bom": 230,
+            "Bom": 189,
+            "muito bom": 122,
+            "bom": 107,
+            "Recomendo": 100
+          },
+          "min_length": 1,
+          "max_length": 208
+        },
+        "review_creation_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 636,
+          "unique_percentage": 0.64,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-10-02 00:00:00",
+          "max_date": "2018-08-31 00:00:00",
+          "invalid_date_count": 0
+        },
+        "review_answer_timestamp": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 98248,
+          "unique_percentage": 99.02,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-10-07 18:32:28",
+          "max_date": "2018-10-29 12:27:35",
+          "invalid_date_count": 0
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:56.020313"
+    },
+    "olist_orders_dataset": {
+      "table_name": "olist_orders_dataset",
+      "file_name": "olist_orders_dataset.csv",
+      "file_size_mb": 16.84,
+      "row_count": 99441,
+      "column_count": 8,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [
+        "order_id",
+        "customer_id"
+      ],
+      "columns": {
+        "order_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 99441,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "e481f51cbdc54678b7cc49136f2d6af7": 1,
+            "53cdb2fc8bc7dce0b6741e2150273451": 1,
+            "47770eb9100c2d0c44946d9cf07ec65d": 1,
+            "949d5b44dbf5de918fe9c16f97b45f8a": 1,
+            "ad21c59c0840e6cb83a9ceb5573f8159": 1
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "customer_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 99441,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "9ef432eb6251297304e76186b10a928d": 1,
+            "b0830fb4747a6c6d20dea0b8c802d7ef": 1,
+            "41ce2a54c0b03bf3443c3d931a367089": 1,
+            "f88197465ea7920adcdbec7375364d82": 1,
+            "8ab97904e6daea8866dbdbc4fb7aad2c": 1
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "order_status": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 8,
+          "unique_percentage": 0.01,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "delivered": 96478,
+            "shipped": 1107,
+            "canceled": 625,
+            "unavailable": 609,
+            "invoiced": 314
+          },
+          "min_length": 7,
+          "max_length": 11
+        },
+        "order_purchase_timestamp": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 98875,
+          "unique_percentage": 99.43,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-09-04 21:15:19",
+          "max_date": "2018-10-17 17:30:18",
+          "invalid_date_count": 0
+        },
+        "order_approved_at": {
+          "dtype": "str",
+          "null_count": 160,
+          "null_percentage": 0.16,
+          "unique_count": 90733,
+          "unique_percentage": 91.24,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "2018-02-27 04:31:10": 9,
+            "2017-11-07 07:30:38": 7,
+            "2018-02-06 05:31:52": 7,
+            "2018-07-05 16:33:01": 7,
+            "2017-11-07 07:30:29": 7
+          },
+          "min_length": 19,
+          "max_length": 19
+        },
+        "order_delivered_carrier_date": {
+          "dtype": "str",
+          "null_count": 1783,
+          "null_percentage": 1.79,
+          "unique_count": 81018,
+          "unique_percentage": 81.47,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-10-08 10:34:01",
+          "max_date": "2018-09-11 19:48:28",
+          "invalid_date_count": 0
+        },
+        "order_delivered_customer_date": {
+          "dtype": "str",
+          "null_count": 2965,
+          "null_percentage": 2.98,
+          "unique_count": 95664,
+          "unique_percentage": 96.2,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-10-11 13:46:32",
+          "max_date": "2018-10-17 13:22:46",
+          "invalid_date_count": 0
+        },
+        "order_estimated_delivery_date": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 459,
+          "unique_percentage": 0.46,
+          "is_candidate_pk": false,
+          "inferred_type": "datetime",
+          "min_date": "2016-09-30 00:00:00",
+          "max_date": "2018-11-12 00:00:00",
+          "invalid_date_count": 0
+        }
+      },
+      "anomalies": [
+        {
+          "type": "MISSING_DELIVERY_DATE_FOR_DELIVERED",
+          "severity": "HIGH",
+          "count": 8,
+          "description": "8 orders with status 'delivered' have NULL delivered_customer_date."
+        }
+      ],
+      "profile_timestamp": "2026-09-29T08:02:56.903994"
+    },
+    "olist_products_dataset": {
+      "table_name": "olist_products_dataset",
+      "file_name": "olist_products_dataset.csv",
+      "file_size_mb": 2.27,
+      "row_count": 32951,
+      "column_count": 9,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [
+        "product_id"
+      ],
+      "columns": {
+        "product_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 32951,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "1e9e8ef04dbcff4541ed26657ea517e5": 1,
+            "3aa071139cb16b67ca9e5dea641aaa2f": 1,
+            "96bd76ec8810374ed1b65e291975717f": 1,
+            "cef67bcfe19066a932b7673e239eb23d": 1,
+            "9dc1a7de274444849c219cff195d0b71": 1
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "product_category_name": {
+          "dtype": "str",
+          "null_count": 610,
+          "null_percentage": 1.85,
+          "unique_count": 73,
+          "unique_percentage": 0.22,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "cama_mesa_banho": 3029,
+            "esporte_lazer": 2867,
+            "moveis_decoracao": 2657,
+            "beleza_saude": 2444,
+            "utilidades_domesticas": 2335
+          },
+          "min_length": 3,
+          "max_length": 46
+        },
+        "product_name_lenght": {
+          "dtype": "float64",
+          "null_count": 610,
+          "null_percentage": 1.85,
+          "unique_count": 66,
+          "unique_percentage": 0.2,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 5.0,
+          "max": 76.0,
+          "mean": 48.4769,
+          "std": 10.2457,
+          "median": 51.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_description_lenght": {
+          "dtype": "float64",
+          "null_count": 610,
+          "null_percentage": 1.85,
+          "unique_count": 2960,
+          "unique_percentage": 8.98,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 4.0,
+          "max": 3992.0,
+          "mean": 771.4953,
+          "std": 635.1152,
+          "median": 595.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_photos_qty": {
+          "dtype": "float64",
+          "null_count": 610,
+          "null_percentage": 1.85,
+          "unique_count": 19,
+          "unique_percentage": 0.06,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1.0,
+          "max": 20.0,
+          "mean": 2.189,
+          "std": 1.7368,
+          "median": 1.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_weight_g": {
+          "dtype": "float64",
+          "null_count": 2,
+          "null_percentage": 0.01,
+          "unique_count": 2204,
+          "unique_percentage": 6.69,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 0.0,
+          "max": 40425.0,
+          "mean": 2276.4725,
+          "std": 4282.0387,
+          "median": 700.0,
+          "negative_count": 0,
+          "zero_count": 4
+        },
+        "product_length_cm": {
+          "dtype": "float64",
+          "null_count": 2,
+          "null_percentage": 0.01,
+          "unique_count": 99,
+          "unique_percentage": 0.3,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 7.0,
+          "max": 105.0,
+          "mean": 30.8151,
+          "std": 16.9145,
+          "median": 25.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_height_cm": {
+          "dtype": "float64",
+          "null_count": 2,
+          "null_percentage": 0.01,
+          "unique_count": 102,
+          "unique_percentage": 0.31,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 2.0,
+          "max": 105.0,
+          "mean": 16.9377,
+          "std": 13.6376,
+          "median": 13.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "product_width_cm": {
+          "dtype": "float64",
+          "null_count": 2,
+          "null_percentage": 0.01,
+          "unique_count": 95,
+          "unique_percentage": 0.29,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 6.0,
+          "max": 118.0,
+          "mean": 23.1967,
+          "std": 12.079,
+          "median": 20.0,
+          "negative_count": 0,
+          "zero_count": 0
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:56.992396"
+    },
+    "olist_sellers_dataset": {
+      "table_name": "olist_sellers_dataset",
+      "file_name": "olist_sellers_dataset.csv",
+      "file_size_mb": 0.17,
+      "row_count": 3095,
+      "column_count": 4,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [
+        "seller_id"
+      ],
+      "columns": {
+        "seller_id": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 3095,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "3442f8959a84dea7ee197c632cb2df15": 1,
+            "d1b65fc7debc3361ea86b5f14c68d2e2": 1,
+            "ce3ad9de960102d0677a81f5d0bb7b2d": 1,
+            "c0f3eea2e14555b6faeea3dd58c1b1c3": 1,
+            "51a04a8a6bdcb23deccc82b0b80742cf": 1
+          },
+          "min_length": 32,
+          "max_length": 32
+        },
+        "seller_zip_code_prefix": {
+          "dtype": "int64",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 2246,
+          "unique_percentage": 72.57,
+          "is_candidate_pk": false,
+          "inferred_type": "numeric",
+          "min": 1001.0,
+          "max": 99730.0,
+          "mean": 32291.0595,
+          "std": 32713.4538,
+          "median": 14940.0,
+          "negative_count": 0,
+          "zero_count": 0
+        },
+        "seller_city": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 611,
+          "unique_percentage": 19.74,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "sao paulo": 694,
+            "curitiba": 127,
+            "rio de janeiro": 96,
+            "belo horizonte": 68,
+            "ribeirao preto": 52
+          },
+          "min_length": 2,
+          "max_length": 40
+        },
+        "seller_state": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 23,
+          "unique_percentage": 0.74,
+          "is_candidate_pk": false,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "SP": 1849,
+            "PR": 349,
+            "MG": 244,
+            "SC": 190,
+            "RJ": 171
+          },
+          "min_length": 2,
+          "max_length": 2
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:57.007557"
+    },
+    "product_category_name_translation": {
+      "table_name": "product_category_name_translation",
+      "file_name": "product_category_name_translation.csv",
+      "file_size_mb": 0.0,
+      "row_count": 71,
+      "column_count": 2,
+      "duplicate_rows": 0,
+      "candidate_primary_keys": [
+        "product_category_name",
+        "product_category_name_english"
+      ],
+      "columns": {
+        "product_category_name": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 71,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "beleza_saude": 1,
+            "informatica_acessorios": 1,
+            "automotivo": 1,
+            "cama_mesa_banho": 1,
+            "moveis_decoracao": 1
+          },
+          "min_length": 3,
+          "max_length": 46
+        },
+        "product_category_name_english": {
+          "dtype": "str",
+          "null_count": 0,
+          "null_percentage": 0.0,
+          "unique_count": 71,
+          "unique_percentage": 100.0,
+          "is_candidate_pk": true,
+          "inferred_type": "categorical/text",
+          "top_values": {
+            "health_beauty": 1,
+            "computers_accessories": 1,
+            "auto": 1,
+            "bed_bath_table": 1,
+            "furniture_decor": 1
+          },
+          "min_length": 3,
+          "max_length": 39
+        }
+      },
+      "anomalies": [],
+      "profile_timestamp": "2026-09-29T08:02:57.014189"
+    }
+  }
+}

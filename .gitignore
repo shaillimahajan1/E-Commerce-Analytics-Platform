@@ -1,0 +1,92 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment and Secrets (CRITICAL: Never commit credentials)
+*.env
+*.pem
+*.key
+*.crt
+service_account*.json
+credentials/
+secrets/
+.gcp/
+gcp-key*.json
+client_secrets.json
+
+# dbt
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/
+target/
+dbt_packages/
+dbt.log
+
+# Airflow
+airflow/logs/
+airflow/airflow.cfg
+airflow/airflow.db
+airflow/*.pid
+standalone_admin_password.txt
+
+# Databases / Warehouse Local Files
+*.duckdb
+*.duckdb.wal
+*.sqlite3
+*.db
+
+# Data directories (raw datasets can be downloaded via scripts or Kaggle/HF)
+# Keep data directory structure via README/keepfiles
+data/processed/*.parquet
+data/processed/*.csv
+
+# IDE & OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
