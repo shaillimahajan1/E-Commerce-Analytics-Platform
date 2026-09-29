@@ -1,0 +1,155 @@
+{
+  "evaluated_at": "2026-09-29T08:21:18.956799",
+  "summary": {
+    "total_checks": 12,
+    "passed": 12,
+    "warned": 0,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "pillar": "Uniqueness",
+      "table": "ecommerce_analytics_marts.fct_orders",
+      "check_name": "PK Uniqueness on order_id",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 99441,
+        "unique_keys": 99441,
+        "duplicate_keys": 0,
+        "duplicate_rate_pct": 0.0
+      },
+      "description": "Verified that primary key 'order_id' has 0 duplicate values."
+    },
+    {
+      "pillar": "Uniqueness",
+      "table": "ecommerce_analytics_marts.dim_customer",
+      "check_name": "PK Uniqueness on customer_unique_id",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 96096,
+        "unique_keys": 96096,
+        "duplicate_keys": 0,
+        "duplicate_rate_pct": 0.0
+      },
+      "description": "Verified that primary key 'customer_unique_id' has 0 duplicate values."
+    },
+    {
+      "pillar": "Uniqueness",
+      "table": "ecommerce_analytics_marts.dim_product",
+      "check_name": "PK Uniqueness on product_id",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 32951,
+        "unique_keys": 32951,
+        "duplicate_keys": 0,
+        "duplicate_rate_pct": 0.0
+      },
+      "description": "Verified that primary key 'product_id' has 0 duplicate values."
+    },
+    {
+      "pillar": "Uniqueness",
+      "table": "ecommerce_analytics_marts.dim_seller",
+      "check_name": "PK Uniqueness on seller_id",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 3095,
+        "unique_keys": 3095,
+        "duplicate_keys": 0,
+        "duplicate_rate_pct": 0.0
+      },
+      "description": "Verified that primary key 'seller_id' has 0 duplicate values."
+    },
+    {
+      "pillar": "Uniqueness",
+      "table": "ecommerce_analytics_marts.fct_order_items",
+      "check_name": "PK Uniqueness on order_item_key",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 112650,
+        "unique_keys": 112650,
+        "duplicate_keys": 0,
+        "duplicate_rate_pct": 0.0
+      },
+      "description": "Verified that primary key 'order_item_key' has 0 duplicate values."
+    },
+    {
+      "pillar": "Completeness",
+      "table": "ecommerce_analytics_marts.fct_orders",
+      "check_name": "Null check on customer_unique_id",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 99441,
+        "null_count": 0,
+        "null_rate_pct": 0.0
+      },
+      "description": "Audited attribute 'customer_unique_id' for missing or null entries."
+    },
+    {
+      "pillar": "Completeness",
+      "table": "ecommerce_analytics_marts.fct_orders",
+      "check_name": "Null check on gross_merchandise_value",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 99441,
+        "null_count": 0,
+        "null_rate_pct": 0.0
+      },
+      "description": "Audited attribute 'gross_merchandise_value' for missing or null entries."
+    },
+    {
+      "pillar": "Completeness",
+      "table": "ecommerce_analytics_marts.fct_order_items",
+      "check_name": "Null check on item_price",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 112650,
+        "null_count": 0,
+        "null_rate_pct": 0.0
+      },
+      "description": "Audited attribute 'item_price' for missing or null entries."
+    },
+    {
+      "pillar": "Completeness",
+      "table": "ecommerce_analytics_marts.dim_product",
+      "check_name": "Null check on product_category_name_english",
+      "status": "PASS",
+      "metrics": {
+        "total_rows": 32951,
+        "null_count": 0,
+        "null_rate_pct": 0.0
+      },
+      "description": "Audited attribute 'product_category_name_english' for missing or null entries."
+    },
+    {
+      "pillar": "Validity",
+      "table": "ecommerce_analytics_marts.fct_orders",
+      "check_name": "Non-Negative Monetary Bounds",
+      "status": "PASS",
+      "metrics": {
+        "negative_gmv_count": 0,
+        "negative_freight_count": 0
+      },
+      "description": "Verified that gross merchandise value and freight are non-negative."
+    },
+    {
+      "pillar": "Referential Integrity",
+      "table": "ecommerce_analytics_marts.fct_order_items",
+      "check_name": "Orphan Items in Orders",
+      "status": "PASS",
+      "metrics": {
+        "orphan_item_records": 0
+      },
+      "description": "Verified that all line items reference an existing order header."
+    },
+    {
+      "pillar": "Timeliness / Consistency",
+      "table": "ecommerce_analytics_marts.fct_orders",
+      "check_name": "Chronological Delivery Precedence",
+      "status": "PASS",
+      "metrics": {
+        "inversion_violations": 0
+      },
+      "description": "Verified that delivery dates do not precede order placement timestamps."
+    }
+  ]
+}
