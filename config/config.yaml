@@ -1,0 +1,128 @@
+# ==============================================================================
+# E-Commerce Analytics Platform Configuration
+# ==============================================================================
+
+project:
+  name: "ecommerce-analytics-platform"
+  version: "1.0.0"
+  description: "End-to-End ELT, Analytics Engineering, Data Modeling & Business Intelligence"
+
+storage:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  local_db_path: "data/processed/ecommerce_warehouse.duckdb"
+
+gcp:
+  project_id: "${GCP_PROJECT_ID}"
+  location: "US"
+  datasets:
+    raw: "ecommerce_raw"
+    analytics: "ecommerce_analytics"
+  audit_table: "raw_ingestion_audit"
+
+tables:
+  customers:
+    source_file: "olist_customers_dataset.csv"
+    raw_table: "raw_customers"
+    primary_key: ["customer_id"]
+    expected_columns:
+      - "customer_id"
+      - "customer_unique_id"
+      - "customer_zip_code_prefix"
+      - "customer_city"
+      - "customer_state"
+
+  geolocation:
+    source_file: "olist_geolocation_dataset.csv"
+    raw_table: "raw_geolocation"
+    primary_key: [] # Non-unique source
+    expected_columns:
+      - "geolocation_zip_code_prefix"
+      - "geolocation_lat"
+      - "geolocation_lng"
+      - "geolocation_city"
+      - "geolocation_state"
+
+  order_items:
+    source_file: "olist_order_items_dataset.csv"
+    raw_table: "raw_order_items"
+    primary_key: ["order_id", "order_item_id"]
+    expected_columns:
+      - "order_id"
+      - "order_item_id"
+      - "product_id"
+      - "seller_id"
+      - "shipping_limit_date"
+      - "price"
+      - "freight_value"
+
+  payments:
+    source_file: "olist_order_payments_dataset.csv"
+    raw_table: "raw_payments"
+    primary_key: ["order_id", "payment_sequential"]
+    expected_columns:
+      - "order_id"
+      - "payment_sequential"
+      - "payment_type"
+      - "payment_installments"
+      - "payment_value"
+
+  reviews:
+    source_file: "olist_order_reviews_dataset.csv"
+    raw_table: "raw_reviews"
+    primary_key: ["review_id", "order_id"]
+    expected_columns:
+      - "review_id"
+      - "order_id"
+      - "review_score"
+      - "review_comment_title"
+      - "review_comment_message"
+      - "review_creation_date"
+      - "review_answer_timestamp"
+
+  orders:
+    source_file: "olist_orders_dataset.csv"
+    raw_table: "raw_orders"
+    primary_key: ["order_id"]
+    expected_columns:
+      - "order_id"
+      - "customer_id"
+      - "order_status"
+      - "order_purchase_timestamp"
+      - "order_approved_at"
+      - "order_delivered_carrier_date"
+      - "order_delivered_customer_date"
+      - "order_estimated_delivery_date"
+
+  products:
+    source_file: "olist_products_dataset.csv"
+    raw_table: "raw_products"
+    primary_key: ["product_id"]
+    expected_columns:
+      - "product_id"
+      - "product_category_name"
+      - "product_name_lenght"
+      - "product_description_lenght"
+      - "product_photos_qty"
+      - "product_weight_g"
+      - "product_length_cm"
+      - "product_height_cm"
+      - "product_width_cm"
+
+  sellers:
+    source_file: "olist_sellers_dataset.csv"
+    raw_table: "raw_sellers"
+    primary_key: ["seller_id"]
+    expected_columns:
+      - "seller_id"
+      - "seller_zip_code_prefix"
+      - "seller_city"
+      - "seller_state"
+
+  category_translation:
+    source_file: "product_category_name_translation.csv"
+    raw_table: "raw_category_translation"
+    primary_key: ["product_category_name"]
+    expected_columns:
+      - "product_category_name"
+      - "product_category_name_english"
